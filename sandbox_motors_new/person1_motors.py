@@ -1,7 +1,7 @@
 """
 Functions for moving the robot FORWARD and BACKWARD.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and mohammed ali.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # TODO: 2. Implment forward_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
@@ -11,6 +11,7 @@ Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
 
 import ev3dev.ev3 as ev3
 import time
+
 
 
 def test_forward_backward():
@@ -35,6 +36,21 @@ def forward_seconds(seconds, speed, stop_action):
     where speed is between -100 (full speed backward) and 100 (full speed forward).
     Uses the given stop_action.
     """
+    # Connect two large motors on output ports B and C
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    # Check that the motors are actually connected
+    assert left_motor.connected
+    assert right_motor.connected
+
+    left_motor.time_sp = seconds
+    right_motor.time_sp = seconds
+    while seconds != 0:
+        left_motor.run_forever(speed_sp=speed, stop_action=stop_action)
+        right_motor.run_forever(speed_sp=speed, stop_action=stop_action)
+
+    ev3.Sound.beep().wait()
 
 
 def forward_by_time(inches, speed, stop_action):

@@ -12,6 +12,7 @@ Authors: David Fisher, David Mutchler and mohammed ali.
 import ev3dev.ev3 as ev3
 import time
 
+
 def test_forward_backward():
     """
     Tests the forward and backward functions, as follows:
@@ -26,7 +27,9 @@ def test_forward_backward():
       3. Same as #2, but runs forward_by_encoders.
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
-    forward_seconds(15, 200, 'brake')
+    # forward_seconds(15, 200, 'brake')
+    forward_by_time(6, 600, 'brake')
+
 
 def forward_seconds(seconds, speed, stop_action):
     """
@@ -74,14 +77,15 @@ def forward_by_time(inches, speed, stop_action):
     deg = 90 * inches
     time = deg / speed
 
-    left_motor.run_timed(speed_sp=speed, time_sp=time, stop_action = 'brake')
-    right_motor.run_timed(speed_sp=speed, time_sp=time, stop_action='brake')
+    left_motor.run_timed(speed_sp=speed, time_sp=time, stop_action=stop_action)
+    right_motor.run_timed(speed_sp=speed, time_sp=time, stop_action=stop_action)
     time.sleep(time)
 
     left_motor.stop()
     right_motor.stop()
 
     ev3.Sound.beep().wait()
+
 
 def forward_by_encoders(inches, speed, stop_action):
     """

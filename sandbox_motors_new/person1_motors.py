@@ -88,7 +88,7 @@ def forward_by_encoders(inches, speed, stop_action):
     Makes the robot move forward the given number of inches at the given speed,
     where speed is between -100 (full speed backward) and 100 (full speed forward).
     Uses the algorithm:
-      1. Compute the number of degrees the wheels should spin to achieve the desired distance.
+      1. Computea the number of degrees the wheels should spin to achieve the desired distance.
       2. Move until the computed number of degrees is reached.
     """
 

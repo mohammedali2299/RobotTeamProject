@@ -12,8 +12,6 @@ Authors: David Fisher, David Mutchler and mohammed ali.
 import ev3dev.ev3 as ev3
 import time
 
-
-
 def test_forward_backward():
     """
     Tests the forward and backward functions, as follows:
@@ -65,7 +63,25 @@ def forward_by_time(inches, speed, stop_action):
       2. Sleep for the computed number of seconds.
       3. Stop moving.
     """
+    # Connect two large motors on output ports B and C
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
+    # Check that the motors are actually connected
+    assert left_motor.connected
+    assert right_motor.connected
+
+    deg = 90 * inches
+    time = deg / speed
+
+    left_motor.run_timed(speed_sp=speed, time_sp=time, stop_action = 'brake')
+    right_motor.run_timed(speed_sp=speed, time_sp=time, stop_action='brake')
+    time.sleep(time)
+
+    left_motor.stop()
+    right_motor.stop()
+
+    ev3.Sound.beep().wait()
 
 def forward_by_encoders(inches, speed, stop_action):
     """

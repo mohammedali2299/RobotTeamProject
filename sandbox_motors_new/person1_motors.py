@@ -28,7 +28,7 @@ def test_forward_backward():
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
     # forward_seconds(15, 200, 'brake')
-    forward_by_time(6, 600, 'brake')
+    forward_by_time(6, 50, 'brake')
 
 
 def forward_seconds(seconds, speed, stop_action):
@@ -75,7 +75,7 @@ def forward_by_time(inches, speed, stop_action):
     assert right_motor.connected
 
     deg = 90 * inches
-    time = deg / speed
+    time = deg / (speed*9)
 
     left_motor.run_timed(speed_sp=speed, time_sp=time, stop_action=stop_action)
     right_motor.run_timed(speed_sp=speed, time_sp=time, stop_action=stop_action)
@@ -92,7 +92,7 @@ def forward_by_encoders(inches, speed, stop_action):
     Makes the robot move forward the given number of inches at the given speed,
     where speed is between -100 (full speed backward) and 100 (full speed forward).
     Uses the algorithm:
-      1. Computea the number of degrees the wheels should spin to achieve the desired distance.
+      1. Compute the number of degrees the wheels should spin to achieve the desired distance.
       2. Move until the computed number of degrees is reached.
     """
 

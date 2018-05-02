@@ -28,7 +28,8 @@ def test_forward_backward():
       4. Same as #1, 2, 3, but tests the BACKWARD functions.
     """
     # forward_seconds(15, 200, 'brake')
-    forward_by_time(6, 50, 'brake')
+    # forward_by_time(6, 50, 'brake')
+    forward_by_encoders(10, 80, 'brake')
 
 
 def forward_seconds(seconds, speed, stop_action):
@@ -75,14 +76,15 @@ def forward_by_time(inches, speed, stop_action):
     assert right_motor.connected
 
     deg = 90 * inches
-    time = deg / (speed*9)
+    speed = speed * 9
+    time1 = deg / speed
+    time1 = int(time1 * 1000)
 
-    left_motor.run_timed(speed_sp=speed, time_sp=time, stop_action=stop_action)
-    right_motor.run_timed(speed_sp=speed, time_sp=time, stop_action=stop_action)
-    time.sleep(time)
+    left_motor.run_timed(speed_sp=speed, time_sp=time1, stop_action=stop_action)
+    right_motor.run_timed(speed_sp=speed, time_sp=time1, stop_action=stop_action)
 
-    left_motor.stop()
-    right_motor.stop()
+    left_motor.wait_while("running")
+    right_motor.wait_while("running")
 
     ev3.Sound.beep().wait()
 
@@ -95,6 +97,21 @@ def forward_by_encoders(inches, speed, stop_action):
       1. Compute the number of degrees the wheels should spin to achieve the desired distance.
       2. Move until the computed number of degrees is reached.
     """
+    left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+    right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
+
+    assert left_motor.connected
+    assert right_motor.connected
+
+    deg = inches * 90
+    print(deg)
+    left_motor.run_to_rel_pos(speed_sp=speed, position_sp=deg, stop_action=stop_action)
+    right_motor.run_to_rel_pos(speed_sp=speed, position_sp=deg, stop_action=stop_action)
+    left_motor.wait_while("running")
+    right_motor.wait_while("running")
+    ev3.Sound.beep().wait()
+
+
 
 
 def backward_seconds(seconds, speed, stop_action):

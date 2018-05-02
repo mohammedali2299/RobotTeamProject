@@ -116,14 +116,14 @@ def forward_by_encoders(inches, speed, stop_action):
 
 def backward_seconds(seconds, speed, stop_action):
     """ Calls forward_seconds with negative speeds to achieve backward motion. """
-
+    forward_seconds(seconds, -speed, stop_action)
 
 def backward_by_time(inches, speed, stop_action):
     """ Calls forward_by_time with negative speeds to achieve backward motion. """
-
+    forward_by_time(inches, -speed, stop_action)
 
 def backward_by_encoders(inches, speed, stop_action):
     """ Calls forward_by_encoders with negative speeds to achieve backward motion. """
-
+    forward_by_encoders(inches, -speed, stop_action)
 
 test_forward_backward()

@@ -35,8 +35,8 @@ def main():
     # Uncomment these tests as you proceed through this module.
 
      #run_test_touch_sensor()
-    run_test_wait_for_press()
-    # run_test_show_images()
+    # run_test_wait_for_press()
+    run_test_show_images()
 
 
 def run_test_touch_sensor():
@@ -228,6 +228,16 @@ def show_images(list_of_images):
     Type hints:
       :type list_of_images: []
     """
+    screen = ev3.Screen()
+    ts = ev3.TouchSensor()
+
+    for k in range(len(list_of_images)):
+        print("Press the touch sensor for the next image.")
+        if ts.is_pressed == 1:
+            time.sleep(1)
+            print("Look at the image on the BRICK!")
+            screen.image.paste(list_of_images[k], (0,0))
+            screen.update()
 
 
 # -----------------------------------------------------------------------------

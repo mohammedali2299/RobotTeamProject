@@ -7,11 +7,11 @@ Person 1: ev3.TouchSensor
 Person 2: ev3.Button
 Person 3: ev3.RemoteControl
 
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and mohammed ali.
+"""  # done: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 # -----------------------------------------------------------------------------
-# TODO: 2.  WITH YOUR INSTRUCTOR, discuss the "big picture" of this project,
+# done: 2.  WITH YOUR INSTRUCTOR, discuss the "big picture" of this project,
 #           as described in the   _README_FIRST.txt   file.
 #
 # When your   ** ENTIRE TEAM ** understands that:
@@ -34,8 +34,8 @@ def main():
     """ Calls the   TEST   functions in this module. """
     # Uncomment these tests as you proceed through this module.
 
-    # run_test_touch_sensor()
-    # run_test_wait_for_press()
+     #run_test_touch_sensor()
+    run_test_wait_for_press()
     # run_test_show_images()
 
 
@@ -106,10 +106,13 @@ def print_state_of_touch_sensor(n, seconds_per_print):
        2. SLEEPs for the given number of seconds.
     """
     # -------------------------------------------------------------------------
-    # TODO: 3.  Implement and test this function.
+    # done: 3.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
-
+    ts = ev3.TouchSensor()
+    for k in range(n):
+        print(ts.is_pressed)
+        time.sleep(seconds_per_print)
 
 def run_test_wait_for_press():
     """ Tests the   wait_for_press   function. """
@@ -151,9 +154,14 @@ def wait_for_press():
        2. Sleeps for a small amount (say, 0.05 seconds).
     """
     # -------------------------------------------------------------------------
-    # TODO: 4.  Implement and test this function.
+    # done: 4.  Implement and test this function.
     #           Tests have been written for you (above).
     # -------------------------------------------------------------------------
+    ts = ev3.TouchSensor()
+    while True:
+        if ts.is_pressed == 1:
+            break
+
 
 
 def run_test_show_images():

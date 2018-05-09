@@ -29,7 +29,8 @@ def test_forward_backward():
     """
     # forward_seconds(15, 200, 'brake')
     # forward_by_time(6, 50, 'brake')
-    forward_by_encoders(10, 80, 'brake')
+    # forward_by_encoders(10, 80, 'brake')
+    backward_seconds(5, 500, 'brake')
 
 
 def forward_seconds(seconds, speed, stop_action):

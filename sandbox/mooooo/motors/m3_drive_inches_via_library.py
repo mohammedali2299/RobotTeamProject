@@ -49,7 +49,7 @@ def main():
     robot = robo.Snatch3r()
 
     while True:
-        speed_deg_per_second = int(input("Speed (0 to 900 dps): "))
+        speed_deg_per_second = int(input("Speed (0 to 100 dps): "))
         if speed_deg_per_second == 0:
             break
         inches_target = int(input("Distance (inches): "))

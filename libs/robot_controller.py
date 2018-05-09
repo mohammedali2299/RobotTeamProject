@@ -29,5 +29,5 @@ class Snatch3r(object):
         degrees = k * inches
         self.left_motor.run_to_rel_pos(position_sp=degrees, speed_sp=speed*8, stop_action=stop_action)
         self.right_motor.run_to_rel_pos(position_sp=degrees, speed_sp=speed*8, stop_action=stop_action)
-    # TODO: Implement the Snatch3r class as needed when working the sandox exercises
+    # TODO: Implement the Snatch3r class as needed when working the sandox exercises //s
     # (and delete these comments)

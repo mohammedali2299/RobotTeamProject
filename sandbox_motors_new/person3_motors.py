@@ -1,9 +1,9 @@
 """
 Functions for TURNING the robot LEFT and RIGHT.
-Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+Authors: David Fisher, David Mutchler and Praveen Rammohan.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
-# TODO: 2. Implment turn_left_seconds, then the relevant part of the test function.
+# TODO: 2. Implement turn_left_seconds, then the relevant part of the test function.
 #          Test and correct as needed.
 #   Then repeat for turn_left_by_time.
 #   Then repeat for turn_left_by_encoders.
@@ -12,6 +12,8 @@ Authors: David Fisher, David Mutchler and PUT_YOUR_NAME_HERE.
 import ev3dev.ev3 as ev3
 import time
 
+left_motor = ev3.LargeMotor(ev3.OUTPUT_B)
+right_motor = ev3.LargeMotor(ev3.OUTPUT_C)
 
 def test_turn_left_turn_right():
     """
@@ -27,7 +29,10 @@ def test_turn_left_turn_right():
       3. Same as #2, but runs turn_left_by_encoders.
       4. Same as #1, 2, 3, but tests the turn_right functions.
     """
-
+    seconds = int(input('Seconds to run: '))
+    speed = int(input('Speed to run (-100 to 100): '))
+    stop_action = input('Stop action: ')
+    turn_left_seconds(seconds, speed, stop_action)
 
 def turn_left_seconds(seconds, speed, stop_action):
     """
@@ -35,6 +40,8 @@ def turn_left_seconds(seconds, speed, stop_action):
     where speed is between -100 (full speed turn_right) and 100 (full speed turn_left).
     Uses the given stop_action.
     """
+    right_motor.run_timed(speed_sp = speed*8, time_sp = seconds*1000, stop_action = stop_action)
+
 
 
 def turn_left_by_time(degrees, speed, stop_action):
@@ -59,15 +66,15 @@ def turn_left_by_encoders(degrees, speed, stop_action):
     """
 
 
-def turn_right_seconds(seconds, speed, stop_action=):
+def turn_right_seconds(seconds, speed, stop_action):
     """ Calls turn_left_seconds with negative speeds to achieve turn_right motion. """
 
 
-def turn_right_by_time(degrees, speed, stop_action=):
+def turn_right_by_time(degrees, speed, stop_action):
     """ Calls turn_left_by_time with negative speeds to achieve turn_right motion. """
 
 
-def turn_right_by_encoders(degrees, speed, stop_action=):
+def turn_right_by_encoders(degrees, speed, stop_action):
     """ Calls turn_left_by_encoders with negative speeds to achieve turn_right motion. """
 
 

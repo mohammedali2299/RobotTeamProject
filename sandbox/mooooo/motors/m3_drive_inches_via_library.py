@@ -55,8 +55,6 @@ def main():
         inches_target = int(input("Distance (inches): "))
         if inches_target == 0:
             break
-        if speed_deg_per_second < 0:
-            robot.backward(inches_target, speed_deg_per_second)
         robot.forward(inches_target, speed_deg_per_second)
         ev3.Sound.beep().wait()  # Fun little beep
 
